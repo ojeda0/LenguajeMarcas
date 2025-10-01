@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        
+        <title> Ejemplo 2: elementos de formato. </title>
+
+    <body>
+
+        <h1>Ejemplo 2: elementos de formato</h1>
+
+        <p>Muestra un texto en <b>negrita</b>, <em>cursiva</em> y <u>subrayado</u>.</p>
+
+        <p><blockquote>Un ejemplo de nota, al cual le añadimos un sangrado por la izquierda.</blockquote></p>
+
+        <hr>
+
+        <h2>Un segundo encabezado</h2>
+
+        <p>Añadimos un ejemplo de superíndice (n=3<sup>2</sup>) y de subíndice (n=3<sub>2</sub>).</p>
+
+    </body>
+
+    </head>
+
+</html>
