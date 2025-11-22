@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Abraham Teba Ojeda">
+        <meta name="description" content="Comprar billetes para La Liga de TOLEA">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Billetes La Liga de TOLEA</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>COMPRA BILLETES</h1>
+        </header>
+
+        <main>
+            <form action="noticias.html" method="get">
+                <label for="Nombre">Nombre:</label>
+                <input type="text" id="Nombre" name="Nombre" size="50" maxlength="45"></p>
+
+                <label for="NumeroPiernas">Número de piernas:</label><br><br>
+                        <label>- menos de 2 </label>
+                        <input type="radio" name="NumeroPiernas"><br><br>
+
+                        <label>- 2 a 3 </label>
+                        <input type="radio" name="NumeroPiernas" checked><br><br>
+
+                        <label>- más de 3 </label>
+                        <input type="radio" name="NumeroPiernas"><br><br>
+
+                <label for="Mareos">¿Se marea en los viajes espaciales?</label>
+                <input type="checkbox" name="Mareos"><br><br>
+
+                <label for="Calificacion">Calificación de la liga:</label><br><br>
+                    <select>
+                        <option value="opcion1">Muy Mala</option>
+                        <option value="opcion2">Media</option>
+                        <option value="opcion3">Buena</option>
+                        <option selected value="opcion4">Muy Buena</option>
+                    </select><br><br>
+
+                <label for="Sugerencias">Sugerencias:</label><br><br>
+                <textarea cols="50" rows="8"></textarea><br><br>
+
+                <input type="submit" value="Enviar">
+            </form>
+        </main>
+
+        <footer>
+        </footer>
+    </body>
+</html>
