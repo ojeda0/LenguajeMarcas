@@ -2,19 +2,40 @@
 
 <html lang="es">
 
-	<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Abraham Teba Ojeda">
+        <meta name="description" content="Lista de selección práctica clase">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de selección en clase</title>
+    </head>
 
-		<meta charset="utf-8">
-		<title>Mi primera página web, estructura básica HTML</title>
-		<link rel="stylesheet" type="text/css" href="ubicación_archivo">
+    <body>
+        <header>
+            <h1>DESTINOS TURÍSTICOS</h1>
+        </header>
 
-	</head>
+        <main>
+            <form action="" method="get">
+				<select name="destinos" multiple size="5">
+					<optgroup label="Europa">
+						<option value="paris">París</option>
+						<option value="berlin">Berlín</option>
+						<option value="roma">Roma</option>
+						<option value="amsterdam">Ámsterdam</option>
+					</optgroup>
 
-	<body>
+					<optgroup label="América">
+						<option value="riodejaneiro">Río de Janeiro</option>
+						<option value="lahabana">La Habana</option>
+						<option value="puntacana">Punta Cana</option>
+						<option value="nuevayork">Nueva York</option>
+					</optgroup>
+                </select>
+			</form>
+        </main>
 
-		<h1>Título principal de la página</h1>
-		<p>Aquí se coloca la información en párrafo que vemos en el navegador</p>
-
-	</body>
-
+        <footer>
+        </footer>
+    </body>
 </html>
