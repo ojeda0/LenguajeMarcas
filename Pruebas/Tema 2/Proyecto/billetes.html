@@ -22,19 +22,19 @@
 
                 <label for="NumeroPiernas">Número de piernas:</label><br><br>
                         <label>- menos de 2 </label>
-                        <input type="radio" name="NumeroPiernas"><br><br>
+                        <input type="radio" name="NumeroPiernas" id="NumeroPiernas"><br><br>
 
                         <label>- 2 a 3 </label>
-                        <input type="radio" name="NumeroPiernas" checked><br><br>
+                        <input type="radio" name="NumeroPiernas" id="NumeroPiernas" checked><br><br>
 
                         <label>- más de 3 </label>
-                        <input type="radio" name="NumeroPiernas"><br><br>
+                        <input type="radio" name="NumeroPiernas" id="NumeroPiernas"><br><br>
 
                 <label for="Mareos">¿Se marea en los viajes espaciales?</label>
-                <input type="checkbox" name="Mareos"><br><br>
+                <input type="checkbox" name="Mareos" id="Mareos"><br><br>
 
                 <label for="Calificacion">Calificación de la liga:</label><br><br>
-                    <select>
+                    <select name="Calificacion" id="Calificacion">
                         <option value="opcion1">Muy Mala</option>
                         <option value="opcion2">Media</option>
                         <option value="opcion3">Buena</option>
@@ -42,7 +42,7 @@
                     </select><br><br>
 
                 <label for="Sugerencias">Sugerencias:</label><br><br>
-                <textarea cols="50" rows="8"></textarea><br><br>
+                <textarea cols="50" rows="8" id="Sugerencias" name="Sugerencias"></textarea><br><br>
 
                 <input type="submit" value="Enviar">
             </form>
