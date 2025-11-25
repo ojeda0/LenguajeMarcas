@@ -5,67 +5,41 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="Abraham Teba Ojeda">
-        <meta name="description" content="Formulario sencillo actividades HTML">
+        <meta name="description" content="Menú desplegable con grupos actividades HTML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulario sencillo</title>
+        <title>Menú desplegable con grupos</title>
     </head>
 
     <body>
         <header>
+            <h1>Menú desplegable con grupos</h1>
         </header>
 
         <main>
-            <form action="actividades.html" method="POST">
+            <form action="actividades.html" method="GET">
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" required>
+                <label for="comida">¿Cuál es tu comida favorita?</label>
                 <br><br>
 
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" name="contrasena" id="contrasena" required>
+                <select>
+                    <optgroup label="Frutas">
+                        <option value="opcion1">Naranja</option>
+                        <option value="opcion2">Manzana</option>
+                    </optgroup>
+
+                    <optgroup label="Verduras">
+                        <option value="opcion1">Brócoli</option>
+                        <option value="opcion2">Coliflor</option>
+                    </optgroup>
+
+                    <optgroup label="Carne">
+                        <option value="opcion1">Filete de pollo</option>
+                        <option value="opcion2">Filete de lomo</option>
+                    </optgroup>
+                </select>
                 <br><br>
 
-                <label for="correo">Correo electrónico:</label>
-                <input type="email" name="correo" id="correo" required>
-                <br><br>
-
-                <label for="fecha">Fecha:</label>
-                <input type="date" name="fecha" id="fecha">
-                <br><br>
-
-                <label for="hora">Tiempo:</label>
-                <input type="time" name="hora" id="hora">
-                <br><br>
-
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" name="telefono" id="telefono" required>
-                <br><br>
-
-                <label for="so">¿Qué Sistema operativo utilizas?:</label>
-                    <select name="so" id="so">
-                        <option value="opcion1">Windows</option>
-                        <option value="opcion2" selected>GNU/Linux</option>
-                        <option value="opcion3">macOS</option>
-                    </select>
-                <br><br>
-
-                <label for="lenguaje">¿Qué lenguaje de marcas conoces?</label>
-                
-                    <input type="checkbox" name="lenguaje" id="html5" value="html5" checked>
-                    <label for="html5">HTML5</label>
-
-                    <input type="checkbox" name="lenguaje" id="xhtml" value="xhtml">
-                    <label for="xhtml">XHTML</label>
-
-                    <input type="checkbox" name="lenguaje" id="xml" value="xml">
-                    <label for="xml">XML</label>
-                <br><br>
-
-                <label for="comentarios">Comentarios:</label>
-                <textarea name="comentarios" id="comentarios" cols="80" rows="6"></textarea>
-                <br><br>
-
-                <input type="submit" name="enviar" value="Enviar">
+                <input type="submit" value="Enviar">
             </form>
         </main>
 
