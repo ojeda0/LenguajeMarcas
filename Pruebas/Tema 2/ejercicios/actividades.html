@@ -1,14 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
     <head>
         <meta charset="UTF-8">
+        <meta name="author" content="Abraham Teba Ojeda">
+        <meta name="description" content="Formulario sencillo actividades HTML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Abraham Teba Ojeda.">
-        <meta name="description" content="Ejercicio 5.2.5">
-        <meta name="keywords" content="HTML, ejercicio">
-        <link rel="stylesheet" href="actividadcss.css">
-        <title>Ejercicio 5.2.5</title>
+        <title>Formulario sencillo</title>
     </head>
 
     <body>
@@ -16,18 +15,58 @@
         </header>
 
         <main>
-            <h1>Videotutorial Accesible</h1>
+            <form action="actividades.html" method="POST">
 
-            <hr>
-           
-            <h2>Videotutorial sobre programación accesible en inglés y español.</h2>
-            <iframe width="450" height="300"
-            src="https://www.youtube.com/embed/VxrIZGQfxmE" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+                <br><br>
 
-            <track label="Español" kind="subtitles" srclang="es" src="subtitulos_es.vtt" default>
-            <track label="English" kind="subtitles" srclang="en" src="subtitulos_en.vtt">
-            </iframe>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" name="contrasena" id="contrasena" required>
+                <br><br>
+
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" id="correo" required>
+                <br><br>
+
+                <label for="fecha">Fecha:</label>
+                <input type="date" name="fecha" id="fecha">
+                <br><br>
+
+                <label for="hora">Tiempo:</label>
+                <input type="time" name="hora" id="hora">
+                <br><br>
+
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" name="telefono" id="telefono" required>
+                <br><br>
+
+                <label for="so">¿Qué Sistema operativo utilizas?:</label>
+                    <select name="so" id="so">
+                        <option value="opcion1">Windows</option>
+                        <option value="opcion2" selected>GNU/Linux</option>
+                        <option value="opcion3">macOS</option>
+                    </select>
+                <br><br>
+
+                <label for="lenguaje">¿Qué lenguaje de marcas conoces?</label>
+                
+                    <input type="checkbox" name="lenguaje" id="html5" value="html5" checked>
+                    <label for="html5">HTML5</label>
+
+                    <input type="checkbox" name="lenguaje" id="xhtml" value="xhtml">
+                    <label for="xhtml">XHTML</label>
+
+                    <input type="checkbox" name="lenguaje" id="xml" value="xml">
+                    <label for="xml">XML</label>
+                <br><br>
+
+                <label for="comentarios">Comentarios:</label>
+                <textarea name="comentarios" id="comentarios" cols="80" rows="6"></textarea>
+                <br><br>
+
+                <input type="submit" name="enviar" value="Enviar">
+            </form>
         </main>
 
         <footer>
