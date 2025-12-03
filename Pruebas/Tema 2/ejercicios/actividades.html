@@ -5,45 +5,80 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="Abraham Teba Ojeda">
-        <meta name="description" content="Menú desplegable con grupos actividades HTML">
+        <meta name="description" content="Estructura HTML5 con etiquetas semanticas">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Menú desplegable con grupos</title>
+        <title>Estructura HTML5 actividad</title>
     </head>
 
     <body>
         <header>
-            <h1>Menú desplegable con grupos</h1>
+            <h1>Aqui pondríamos el titulo de la página web (sin estilo)</h1>
+            
+            <h2>Aqui pondríamos una descripción</h2>
+            
+            <p>
+                Asignamos un logo identificativo 
+                <img src="logo.png" alt="logo">
+            </p>
+
+            <nav>
+                <ul>
+                    <li><a href="#">Novedades</a></li>
+                    <li><a href="#">Populares</a></li>
+                    <li><a href="#">Acerca de mi</a></li>
+                </ul>
+            </nav>
+
+            <p>Descargables y/o videos</p>
         </header>
 
         <main>
-            <form action="actividades.html" method="GET">
+            <section>
+                <h2>Ultimas Novedades</h2>
 
-                <label for="comida">¿Cuál es tu comida favorita?</label>
-                <br><br>
+                <article>
+                    <p>NOVEDAD UNO</p>
+                    
+                    <p>Agosto 2, 2021</p>
+                    
+                    <p><a href="#covid">Incidencia COVID</a></p>
+                    
+                    <p>Aquí estaría el resumen o inicio del contenido de la Novedad UNO...</p>
+                    
+                    <footer>
+                        <a href="#comentarios">2 comentarios</a>
+                    </footer>
+                </article>
 
-                <select>
-                    <optgroup label="Frutas">
-                        <option value="opcion1">Naranja</option>
-                        <option value="opcion2">Manzana</option>
-                    </optgroup>
+                <article>
+                    <p>NOVEDAD DOS</p>
+                </article>
+                
+                <article>
+                    <p>NOVEDAD TRES</p>
+                </article>
+            </section>
 
-                    <optgroup label="Verduras">
-                        <option value="opcion1">Brócoli</option>
-                        <option value="opcion2">Coliflor</option>
-                    </optgroup>
-
-                    <optgroup label="Carne">
-                        <option value="opcion1">Filete de pollo</option>
-                        <option value="opcion2">Filete de lomo</option>
-                    </optgroup>
-                </select>
-                <br><br>
-
-                <input type="submit" value="Enviar">
-            </form>
+            <aside>
+                <h2>Temas Populares</h2>
+                <p>POPULAR 1</p>
+                <p>POPULAR 2</p>
+                <p>POPULAR 3</p>
+            </aside>
         </main>
 
         <footer>
+            <section>
+                <p>Datos Copyright</p>
+            </section>
+            
+            <section>
+                <p>Acerca de mi</p>
+            </section>
+            
+            <section>
+                <p><a href="#mapa">MapaWeb</a></p>
+            </section>
         </footer>
     </body>
 
