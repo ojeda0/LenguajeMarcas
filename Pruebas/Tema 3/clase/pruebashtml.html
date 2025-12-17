@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo CSS</title>
+    <link rel="stylesheet"  type="text/css" href="css/estilos.css"/>
+    <style type="text/css">
+        /* 1. [atributo]
+        Selecciona elementos que simplemente "tengan" el atributo,
+        sin importar su valor. */
+        a[title] {
+            background-color: yellow;
+            border: 2px solid orange;
+        }
+
+        /* 2. [atributo="valor"]
+        Selecciona coincidencia EXACTA. */
+        a[href="home"] {
+
+            font-weight: bold;
+            color: black;
+            text-transform: uppercase;
+
+        }
+
+        /* 3. [atributo^="valor"]
+        Empieza por... (Ideal para https) */
+        a[href^="https"] {
+
+            color: green;
+
+        }
+
+        /* 3.2. para mailto*/
+        a[href^="mailto"] {
+
+            color: purple;
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <div class="contenedor">
+        <h2>Recursos del curso</h2>
+        <ul>
+            <li><a href="#" title="Información extra">Ayuda (con title)</a></li>
+
+
+            <li><a href="home">Ir al Inicio</a></li>
+
+
+            <li><a href="https://seguro.com">Sitio Seguro (https)</a></li>
+            <li><a href="mailto:profe@escuela.com">Enviar Email</a></li>
+
+
+            <li><a href="temario.pdf">Descargar Temario (.pdf)</a></li>
+            <li><a href="foto.jpg">Ver Foto (.jpg)</a></li>
+
+
+            <li><a href="sitio-web-de-pruebas.com">Link de pruebas</a></li>
+
+
+            <li><a href="#" class="btn externo grande">Botón Externo</a></li>
+        </ul>
+    </div>
+</body>
+
+
+</html>

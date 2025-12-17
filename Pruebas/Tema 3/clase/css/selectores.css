@@ -1,0 +1,14 @@
+/*Estilo para los que acaban en .pdf*/
+a[href$=".pdf"] {
+
+    color: red;
+    font-weight: bold;
+
+}
+
+/*Estilo para los que empiezan en https*/
+a[href^="https"] {
+
+    color: pink;
+
+}
