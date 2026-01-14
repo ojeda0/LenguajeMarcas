@@ -1,0 +1,23 @@
+.enlace {
+    background-color: #dff326;
+}
+
+/* 1. :link - Enlace que NO ha sido visitado aún */
+.enlace:link {
+    background-color: #ff29bf;
+}
+
+/* 2. :visited - Enlace que YA has visitado anteriormente */
+.enlace:visited {
+    background-color: #0f9dfc;
+}
+
+/* 3. :hover - Cuando pasas el ratón por ENCIMA */
+.enlace:hover {
+    background-color: #2ecc71;
+}
+
+/* 4. :active - En el momento exacto del CLIC (mientras presionas) */
+.enlace:active {
+    background-color: #c0392b;
+}
