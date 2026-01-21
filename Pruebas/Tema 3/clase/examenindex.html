@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica de Selectores Avanzados - DAW</title>
+    <style>
+        /* EJERCICIO 2: Escribir aquí (ver enunciado) */
+        #main-header {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="css/examencss.css">
+</head>
+<body>
+
+    <header id="main-header">
+        <h1>Dashboard de Gestión</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="https://google.com" target="_blank">Documentación</a>
+            <a href="archive.pdf">Descargas (PDF)</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content-box">
+            <h2>Formulario de Registro</h2>
+            <form id="reg-form" style="background-color: #f9f9f9; padding: 15px;">
+                <input type="text" placeholder="Nombre de usuario" required>
+                <input type="email" placeholder="Email institucional" required>
+                <input type="checkbox" id="terms" checked> <label>Acepto términos</label>
+                <button type="submit">Enviar</button>
+                <button type="button" disabled>Cancelar</button>
+            </form>
+        </section>
+
+        <section class="articles">
+            <article>
+                <p>Primer párrafo informativo.</p>
+                <p>Segundo párrafo informativo.</p>
+                <span>Nota aclaratoria.</span>
+                <p>Tercer párrafo (tras un span).</p>
+            </article>
+        </section>
+    </main>
+
+</body>
+</html>

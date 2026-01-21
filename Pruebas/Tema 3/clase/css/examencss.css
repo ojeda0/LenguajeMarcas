@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+}
+
+p {
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+input[type="email"] {
+    border: 2px solid #2c3e50;
+}
+
+a[href$=".pdf"] {
+    color: #e74c3c;
+    text-transform: uppercase;
+}
+
+nav > a {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+span + p {
+    background-color: #ffeb3b;
+}
+
+nav a:hover {
+    background-color: #ffeb3b;
+}
+
+article p:nth-child(2) {
+    border-left: 5px solid #3498db;
+}
+
+input:invalid {
+    background-color: #ffcccc;
+}
+
+input:checked {
+    background-color: #d1ffd1;
+}
+
+h1::after {
+    content: " ⭐";
+}
