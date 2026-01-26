@@ -1,0 +1,70 @@
+* {
+
+    margin: 0;
+    
+}
+
+nav.menu-principal {
+
+    border-bottom: 3px solid #3498db;
+
+}
+
+a[href$=".pdf"] {
+
+    text-transform: uppercase;
+    border: 2px dashed #e74c3c;
+
+}
+
+nav > a {
+
+    font-weight: bold;
+    color: #3498db;
+
+}
+
+h2 + p {
+
+    background-color: #d4edda;
+
+}
+
+h2 ~ p {
+
+    opacity: 0.6;
+
+}
+
+nav a:hover {
+
+    background-color: #fff3cd;
+
+}
+
+tr:nth-child(even) {
+
+    background-color: #f4f4f9;
+
+}
+
+input:focus {
+
+    background-color: #fff3cd;
+
+}
+
+button:not(.btn-cancel) {
+
+    background-color: #2c3e50;
+    color: #ffffff;
+
+
+}
+
+h1::after {
+
+    display: inline-block;
+    content: " ➔";
+
+}
