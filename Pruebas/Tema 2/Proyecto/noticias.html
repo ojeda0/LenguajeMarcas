@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
     <head>
@@ -8,23 +7,25 @@
         <meta name="description" content="Página de noticias de La Liga de TOLEA">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Noticias de La Liga de TOLEA</title>
+        <link rel="stylesheet" href="css/estiloNoticias.css">
     </head>
 
     <body>
         <header>
-            <h1 id="inicio"><u>Noticias</u></h1>
+            <h1 id="inicio" style="font-family: Georgia, Times, serif; font-size: 22px; color: #6F6F6F; text-align: left; text-decoration: underline;">Noticias</h1>
+            
             <br>
-                <h2>Saludos</h2>
-                <p>Hola terrícolas. Presentamos aquí nuestra liga de fútbol.</p>
+            <p class="saludos">Saludos</p>
+            <p>Hola terrícolas. Presentamos aquí nuestra liga de fútbol.</p>
         </header>
 
         <main>
             <br><br><br><br>
             <table>
                 <tr>
-                    <td>GRAN PARTIDO</td>
+                    <td><p class="subtitulos">GRAN PARTIDO</p></td>
                     <td width="70"></td>
-                    <td>GOLEADOR</td>
+                    <td><p class="subtitulos">GOLEADOR</p></td>
                 </tr>
 
                 <tr>
@@ -32,14 +33,15 @@
                 </tr>
 
                 <tr>
-                    <td valign="top">Ojergnac empata a 15 con el Zurtseva</td>
+                    <td valign="top"><p>Ojergnac empata a 15 con el Zurtseva</p></td>
                     <td width="70"></td>
                     <td rowspan="2"><img src="fotos/cara.jpg" alt="Foto de alienígena"></td>
-                    <td valign="top"><b>Rodaelog omixam</b> con 583 tantos se convierte en el máximo goleador de la liga.</td>
+                    
+                    <td valign="top"><p><b>Rodaelog omixam</b> con 583 tantos se convierte en el máximo goleador de la liga.</p></td>
                 </tr>
 
                 <tr>
-                    <td><h3>Estadísticas de Ojergna</h3></td>
+                    <td><h4>Estadísticas de Ojergnac</h4></td>
                 </tr>
 
                 <tr>
@@ -53,9 +55,9 @@
                 </tr>
 
                 <tr>
-                    <td><h3>Estadísticas de Zurtseva</h3></td>
+                    <td><h4>Estadísticas de Zurtseva</h4></td>
                     <td width="70"></td>
-                    <td colspan="2">COMPRE SU BILLETE</td>
+                    <td colspan="2"><p class="subtitulos">COMPRE SU BILLETE</p></td>
                 </tr>
 
                 <tr>
@@ -67,17 +69,20 @@
                         </ul>
                     </td>
                     <td width="70"></td>
-                    <td colspan="2" valign="top"><p>Si quiere comprar un billete para poder ver un partido, pulse <a href="billetes.html">aquí</a>.</p></td>
+                    <td colspan="2" valign="top">
+                        <p>Si quiere comprar un billete para poder ver un partido, pulse <a href="billetes.html">aquí</a>.</p>
+                    </td>
                 </tr>
             </table>
+            
             <audio src="sonidos/stardew.mp3" autoplay></audio>
         </main>
 
         <br><br><br><br><br><br><br>
 
         <footer>
-            <p><a href="#inicio">Ir al principio</a>.</p>
-            <p><a href="index.html">Ir a la página inicial</a>.</p>
+            <p class="iraprincipio"><a href="#inicio">Ir al principio</a></p>
+            <p><a href="index.html">Ir a la página inicial</a></p>
         </footer>
     </body>
 
