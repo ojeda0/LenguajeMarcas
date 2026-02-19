@@ -6,29 +6,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/actividadescss.css">
         <title>Actividades JS</title>
+        <script>
+            function inicializar() {
+
+                document.getElementById("crear-ventana").onclick = crearVentana;
+                document.getElementById("cerrar-ventana").onclick = cerrarVentana;
+
+            }
+            let miVentana = null;
+            function crearVentana() {
+                miVentana = window.open("https://www.w3c.es", "_blank", "height=600, width=800");
+            }
+
+            function cerrarVentana() {
+                if(miVentana) {
+                    miVentana.close();
+                    miVentana = null;
+                }
+            }
+        </script>
     </head>
 
-    <body>
+    <body onload="inicializar();">
         <header>
         </header>
 
         <main>
-            <h1>Elige un color</h1>
-            <label for="colorSelector">Selecciona un color</label>
-            <select id="colorSelector" onchange="cambiarColor();">
-                <option value="red">Rojo</option>
-                <option value="green">Verde</option>
-                <option value="blue">Blue</option>
-                <option value="yellow">Amarillo</option>
-                <option value="purple">Morado</option>
-            </select>
 
-            <script>
-                function cambiarColor() {
-                    var colorSeleccionado = document.getElementById("colorSelector").value;
-                    document.body.style
-                }
-            </script>
+            <h1>Abrir y cerrar ventanas JS</h1>
+            <form>
+                <input type="button" id="crear-ventana" value="Crear ventana">
+                <input type="button" id="cerrar-ventana" value="Cerrar ventana">
+            </form>
 
         </main>
 
