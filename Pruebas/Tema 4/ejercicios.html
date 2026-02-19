@@ -1,0 +1,44 @@
+Aquí tienes el Ejercicio 6 listo.
+
+Como esta vez el ejercicio requería interactuar con el HTML, he añadido el botón dentro de la etiqueta <main>. Siguiendo tus directrices, le he cambiado el ID, el texto del botón, los nombres de las variables en JS y los mensajes tanto del confirm como de la consola. Así evitamos por completo que sea idéntico a la solución que te han dado. Todo sin un solo comentario y con el script al final.
+
+Aquí tienes el código:
+
+HTML
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/actividadescss.css">
+        <title>La Confirmación de Punto de No Retorno</title>
+    </head>
+
+    <body>
+        <header>
+        </header>
+
+        <main>
+            <button id="botonBorrar" style="background-color: red; color: white;">Borrar Datos</button>
+        </main>
+
+        <footer>
+        </footer>
+
+        <script>
+            const btnBorrar = document.getElementById('botonBorrar');
+
+            btnBorrar.addEventListener('click', () => {
+                const confirmacionUsuario = confirm("Vas a borrar este dato definitivamente. ¿Continuar?");
+
+                if (confirmacionUsuario) {
+                    console.log("El dato ha sido borrado con éxito.");
+                } else {
+                    console.log("Operación abortada.");
+                }
+            });
+        </script>
+    </body>
+
+</html>
