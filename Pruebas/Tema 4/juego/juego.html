@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Adivina la Palabra - Pizarra Digital</title>
+    <!-- Importamos Tailwind CSS para estilos rápidos y modernos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importamos librería de Confeti para la celebración -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+   
+    <style>
+        /* Estilos personalizados para Pizarra Digital */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
+
+        body {
+            font-family: 'Fredoka', 'Verdana', sans-serif;
+            background-color: #f0f9ff; /* Azul muy suave */
+            touch-action: manipulation; /* Mejora la respuesta táctil */
+            overflow: hidden; /* Evita scroll innecesario en pizarra */
+        }
+
+
+        /* Animación de entrada suave */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* Animación de vibración para error */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+            40%, 60% { transform: translate3d(8px, 0, 0); }
+        }
+
+
+        /* Animación de pulso para acierto */
+        .pop {
+            animation: pop 0.3s ease-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+
+        /* Estilo de las teclas */
+        .key-btn {
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 #cbd5e1; /* Sombra sólida para efecto 3D */
+        }
+        .key-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #cbd5e1;
+        }
+        .key-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+
+        /* Espacios de las letras */
+        .letter-slot {
+            border-bottom: 4px solid #3b82f6;
+            min-width: 50px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col items-center justify-center p-4">
+
+
+    <!-- Contenedor Principal -->
+    <div id="game-container" class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl h-full max-h-[90vh] flex flex-col p-6 relative border-4 border-blue-200">
+       
+        <!-- Cabecera: Puntuación y Botón Reiniciar -->
+        <div class="flex justify-between items-center mb-6">
+            <div class="bg-yellow-100 px-6 py-2 rounded-full border-2 border-yellow-300">
+                <span class="text-2xl text-yellow-700 font-bold">Puntos: <span id="score">0</span></span>
+            </div>
+            <button onclick="initGame()" class="bg-indigo-500 hover:bg-indigo-600 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                🔄 Nueva Palabra
+            </button>
+        </div>
+
+
+        <!-- Área de Juego Central -->
+        <div class="flex-1 flex flex-col items-center justify-center gap-8">
+           
+            <!-- Pista -->
+            <div class="text-center w-full">
+                <span class="bg-blue-100 text-blue-800 text-lg font-bold px-4 py-1 rounded-full uppercase tracking-wide">Pista</span>
+                <h2 id="hint-display" class="text-4xl md:text-5xl text-gray-700 font-bold mt-4 leading-tight fade-in">
+                    <!-- La pista aparecerá aquí -->
+                </h2>
+            </div>
+
+
+            <!-- Palabra Oculta -->
+            <div id="word-display" class="flex flex-wrap justify-center gap-2 mt-4 min-h-[80px]">
+                <!-- Las letras aparecerán aquí -->
+            </div>
+
+
+            <!-- Mensaje de estado (Ganaste/Perdiste) -->
+            <div id="message" class="h-12 text-3xl font-bold text-center"></div>
+
+
+        </div>
+
+
+        <!-- Teclado Virtual -->
+        <div class="mt-auto w-full">
+            <div id="keyboard" class="grid grid-cols-10 gap-2 md:gap-3 p-2 bg-gray-50 rounded-2xl border-2 border-gray-100">
+                <!-- Las teclas se generarán con JS -->
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- Script de Lógica del Juego -->
+    <script>
+        // --- Configuración y Datos ---
+        const gameData = [
+            { palabra: "ELEFANTE", pista: "Animal gigante con trompa larga" },
+            { palabra: "PLANETA", pista: "Cuerpo celeste como la Tierra o Marte" },
+            { palabra: "BIBLIOTECA", pista: "Lugar lleno de libros para leer en silencio" },
+            { palabra: "GUITARRA", pista: "Instrumento musical de seis cuerdas" },
+            { palabra: "JIRAFA", pista: "Animal con el cuello muy largo" },
+            { palabra: "HELADO", pista: "Postre frío que se come en verano" },
+            { palabra: "ASTRONAUTA", pista: "Persona que viaja al espacio" },
+            { palabra: "OCEANO", pista: "Gran extensión de agua salada" },
+            { palabra: "DINOSAURIO", pista: "Reptil gigante que vivió hace millones de años" },
+            { palabra: "VOLCAN", pista: "Montaña que expulsa lava y fuego" },
+            { palabra: "MARIPOSA", pista: "Insecto con alas de colores que antes fue oruga" },
+            { palabra: "PIRAMIDE", pista: "Construcción triangular típica de Egipto" }
+        ];
+
+
+        let currentWord = "";
+        let currentHint = "";
+        let guessedLetters = [];
+        let score = 0;
+        let isGameActive = true;
+        let wrongAttempts = 0;
+        const maxWrongAttempts = 6; // Opcional, por si quieres añadir "vidas"
+
+
+        // Elementos del DOM
+        const wordDisplay = document.getElementById('word-display');
+        const hintDisplay = document.getElementById('hint-display');
+        const keyboard = document.getElementById('keyboard');
+        const messageDisplay = document.getElementById('message');
+        const scoreDisplay = document.getElementById('score');
+        const container = document.getElementById('game-container');
+
+
+        // --- Inicialización ---
+        function initGame() {
+            // Resetear estado
+            isGameActive = true;
+            guessedLetters = [];
+            wrongAttempts = 0;
+            messageDisplay.textContent = "";
+            messageDisplay.className = "h-12 text-3xl font-bold text-center";
+            container.classList.remove('shake');
+           
+            // Elegir palabra aleatoria
+            const randomIndex = Math.floor(Math.random() * gameData.length);
+            const selectedData = gameData[randomIndex];
+            currentWord = selectedData.palabra;
+            currentHint = selectedData.pista;
+
+
+            // Renderizar UI
+            renderHint();
+            renderWord();
+            renderKeyboard();
+            playSound('start');
+        }
+
+
+        // --- Renderizado ---
+        function renderHint() {
+            hintDisplay.textContent = currentHint;
+            // Reiniciar animación
+            hintDisplay.classList.remove('fade-in');
+            void hintDisplay.offsetWidth; // Trigger reflow
+            hintDisplay.classList.add('fade-in');
+        }
+
+
+        function renderWord() {
+            wordDisplay.innerHTML = '';
+            const letters = currentWord.split('');
+            let allGuessed = true;
+
+
+            letters.forEach(letter => {
+                const slot = document.createElement('div');
+                slot.className = 'letter-slot';
+               
+                if (guessedLetters.includes(letter)) {
+                    slot.textContent = letter;
+                    slot.classList.add('pop'); // Animación al aparecer
+                } else {
+                    slot.textContent = ''; // Espacio vacío
+                    allGuessed = false;
+                }
+                wordDisplay.appendChild(slot);
+            });
+
+
+            // Verificar victoria
+            if (allGuessed && isGameActive) {
+                gameWon();
+            }
+        }
+
+
+        function renderKeyboard() {
+            keyboard.innerHTML = '';
+            const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+           
+            alphabet.split('').forEach(char => {
+                const btn = document.createElement('button');
+                btn.textContent = char;
+                // Estilos base Tailwind + personalizados
+                btn.className = `
+                    key-btn h-14 md:h-20 text-xl md:text-3xl font-bold rounded-xl
+                    bg-white text-gray-700 border-2 border-gray-200
+                    active:bg-gray-100 touch-manipulation select-none
+                `;
+               
+                // Estados del botón
+                if (guessedLetters.includes(char)) {
+                    btn.classList.add('disabled', 'bg-gray-200', 'text-gray-400', 'border-gray-200');
+                    btn.disabled = true;
+                    // Indicar si fue correcto o incorrecto visualmente en el teclado
+                    if (currentWord.includes(char)) {
+                        btn.classList.replace('bg-gray-200', 'bg-green-100');
+                        btn.classList.add('border-green-200', 'text-green-600');
+                    }
+                } else {
+                    btn.onclick = () => handleGuess(char);
+                }
+
+
+                keyboard.appendChild(btn);
+            });
+        }
+
+
+        // --- Lógica del Juego ---
+        function handleGuess(letter) {
+            if (!isGameActive || guessedLetters.includes(letter)) return;
+
+
+            guessedLetters.push(letter);
+           
+            if (currentWord.includes(letter)) {
+                // Acierto
+                playSound('correct');
+                renderWord();
+                renderKeyboard();
+            } else {
+                // Fallo
+                wrongAttempts++;
+                playSound('wrong');
+                triggerShake();
+                renderKeyboard();
+            }
+        }
+
+
+        function triggerShake() {
+            // Efecto visual de error en todo el contenedor
+            container.classList.remove('shake');
+            void container.offsetWidth;
+            container.classList.add('shake');
+        }
+
+
+        function gameWon() {
+            isGameActive = false;
+            score += 10;
+            scoreDisplay.textContent = score;
+            messageDisplay.textContent = "¡FANTÁSTICO! 🎉";
+            messageDisplay.classList.add('text-green-600', 'pop');
+            playSound('win');
+           
+            // Lluvia de confeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+            });
+        }
+
+
+        // --- Sistema de Audio Simple (Sintetizado para no depender de archivos externos) ---
+        // Usamos AudioContext para generar 'bleeps' y 'bloops' sin cargar mp3
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+           
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1000, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'win') {
+                // Pequeña melodía
+                [400, 500, 600, 800].forEach((freq, i) => {
+                    setTimeout(() => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.type = 'triangle';
+                        o.frequency.value = freq;
+                        g.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                        o.start();
+                        o.stop(audioCtx.currentTime + 0.3);
+                    }, i * 100);
+                });
+            }
+        }
+
+
+        // Iniciar juego al cargar
+        initGame();
+
+
+    </script>
+</body>
+</html>
