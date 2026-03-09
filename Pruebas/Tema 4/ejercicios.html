@@ -1,65 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/actividadescss.css">
-        <title>Mini-Proyecto: TaskMaster CLI</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/actividadescss.css">
+    <title>Gestión de elementos desde JS</title>
+</head>
 
-    <body>
-        <header>
-        </header>
+<body>
+    <header>
+    </header>
 
-        <main>
-        </main>
+    <main>
+        <h2>Incorpora un enlace a una URL en un párrafo / añade un nuevo elemento tipo párrafo y elimina el párrafo 2.</h2>
 
-        <footer>
-        </footer>
+        <p>1. Párrafo primero</p>
+        <p>2. Párrafo segundo</p>
+        <p>3. Párrafo tercero</p>
+        <p>4. Párrafo cuarto</p>
+        <p>5. Párrafo quinto</p>
+    </main>
 
-        <script>
-            const tareas = new Map();
+    <footer>
+    </footer>
 
-            function nuevaTarea(descripcion) {
-                tareas.set(texto, false);
-            }
+    <script>
+        let coleccionP = document.querySelectorAll("p");
+        
+        let linkExterno = document.createElement("a");
+        linkExterno.href = "https://www.google.com";
+        linkExterno.innerHTML = " - Visitar enlace";
+        
+        coleccionP[2].appendChild(linkExterno);
 
-            function verLista() {
-                if (tareas.length === 0) {
-                    console.log("No tienes nada pendiente.");
-                } else {
-                    tareas.forEach((tarea, i) => {
-                        const estado = tarea.completada ? "Terminado" : "Sin hacer";
-                        console.log(`${i}. ${tarea.descripcion} - [${estado}]`);
-                    });
-                }
-            }
+        let parrafoExtra = document.createElement("p");
+        parrafoExtra.innerHTML = "Este texto ha sido generado mediante script";
+        parrafoExtra.style.color = "crimson";
 
-            function marcarHecha(posicion) {
-                if (tareas[posicion]) {
-                    tareas[posicion].completada = true;
-                    console.log(`La tarea número ${posicion} se ha completado.`);
-                } else {
-                    console.log("Ese número de tarea no existe.");
-                }
-            }
+        let contenedorBody = document.body;
+        contenedorBody.insertBefore(parrafoExtra, coleccionP[3]);
 
-            function borrarTarea(posicion) {
-                if (tareas[posicion]) {
-                    tareas.splice(posicion, 1);
-                    console.log(`Elemento en la posición ${posicion} eliminado correctamente.`);
-                } else {
-                    console.log("No puedo borrar algo que no existe.");
-                }
-            }
-
-            nuevaTarea("Repasar apuntes de cliente");
-            nuevaTarea("Hacer la compra");
-            nuevaTarea("Ir al gimnasio");
-            verLista();
-            borrarTarea(1);
-        </script>
-    </body>
+        if (coleccionP.length > 1) {
+            contenedorBody.removeChild(coleccionP[1]);
+        }
+    </script>  
+</body>
 
 </html>
